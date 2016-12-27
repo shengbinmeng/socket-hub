@@ -83,6 +83,8 @@ int main(int argc, char **argv)
                 if (strcmp(right_buf, "ready") == 0) {
                     printf("Right ready\n");
                     right_ready = 1;
+                } else {
+                    continue;
                 }
             }
         }
