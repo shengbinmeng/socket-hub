@@ -16,7 +16,6 @@ static int create_socket(int port)
         return -1;
     }
     struct sockaddr_in addr = {0};
-    addr.sin_len = sizeof(addr);
     addr.sin_family = AF_INET;
     addr.sin_port = htons(port);
     addr.sin_addr.s_addr = INADDR_ANY;
