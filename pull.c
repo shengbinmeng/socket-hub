@@ -53,7 +53,12 @@ int main(int argc, char **argv)
         } else {
             // Use the data.
             printf("%zd bytes received\n", size);
-            printf("CONTENT: %s\n", buf);
+#ifdef DEBUG
+            char content[64];
+            snprintf(content, sizeof(content), "0x%02x 0x%02x 0x%02x 0x%02x ... %s",
+                     buf[0], buf[1], buf[2], buf[3], buf);
+            printf("CONTENT: %s\n", content);
+#endif
         }
 
         sleep(1);
