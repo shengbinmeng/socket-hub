@@ -39,9 +39,17 @@ int main(int argc, char **argv)
         if (size == -1) {
             perror("Error on sending");
         } else {
-            printf("%zd bytes sent\n", size);
-            break;
+            printf("Ready signal sent (%zd bytes)\n", size);
+            ssize_t size = recvfrom(sockfd, buf, BUF_SIZE, MSG_DONTWAIT, NULL, NULL);
+            if (size == -1) {
+                perror("Error on receiving");
+            } else {
+                // We can receive data now.
+                break;
+            }
         }
+        // Try again after one second.
+        sleep(1);
     }
 
     // Receive data.
